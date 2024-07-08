@@ -401,6 +401,7 @@ endif
 #------------------------------------------------------------------------------------------------
 PROJECT_SOURCE_FILES ?= \
    bunner.c \
+   resources.c \
    terrain.c \
 
 # Define all object files from source files

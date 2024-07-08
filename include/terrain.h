@@ -3,6 +3,7 @@
 
 #include <raylib.h>
 
+
 #define MAX_CARS 5
 #define MAX_EAGLES 2
 #define MAX_LOGS 4
@@ -12,7 +13,8 @@ typedef enum terrain_type{
     DIRT,
     ROAD,
     RAIL,
-    WATER
+    WATER,
+    PAVEMENT
 }TerrainType;
 
 typedef enum car_direction{
@@ -58,10 +60,14 @@ typedef struct{
 
 
 //TODO: Create Update/Draw Functions for each TerrainType
-void initRow(Row* output,TerrainType type, int index, Rectangle position);
+
+void initRows(Row* rows, int n);
 
 void drawRow(Row* row);
 
 void deInitRow(Row* row);
+
+//GetNextTerrain
+
 
 #endif
