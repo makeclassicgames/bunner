@@ -11,9 +11,12 @@ int main(){
     
     //Init Window (width, Height, title)
     InitWindow(screenWidth,screenHeight,"Infinite Bunner");
+
+
      initTextures();
      
      initRows(Game.rows,MAX_TERRAINS);
+     initPlayer(&Game.player,(Vector2){screenWidth/2,40},3);
        
 
     //Set target FPS
@@ -34,6 +37,8 @@ int main(){
         for(int i=0;i<MAX_TERRAINS;i++){
             drawRow(&Game.rows[i]);
         }
+
+        drawPlayer(&Game.player);
         //Finish Drawing Mode
         EndDrawing();
     }

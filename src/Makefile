@@ -403,6 +403,7 @@ PROJECT_SOURCE_FILES ?= \
    bunner.c \
    resources.c \
    terrain.c \
+   player.c \
 
 # Define all object files from source files
 OBJS = $(patsubst %.c, %.o, $(PROJECT_SOURCE_FILES))

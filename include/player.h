@@ -17,15 +17,16 @@ typedef enum direction{
 }PlayerDirection;
 
 typedef struct{
-    Texture2D* texture;
+    Texture* texture;
     short lives;
     PlayerState state;
     PlayerDirection direction;
     Vector2 position;
+    short currentFrame;
 }Player;
 
-Player* initPlayer(Vector2 position,short lives);
+void initPlayer(Player* ,Vector2 ,short);
 void updatePlayer(Player* player);
-void drawPlayer(Player* player);
+void drawPlayer(Player*);
 
 #endif

@@ -29,15 +29,13 @@ void initRows(Row *rows, int n)
 
     initRow(&rows[0], GRASS, 0, position);
     int index = 0;
+    Rectangle curr_position = position;
     for (int i = 1; i < n; i++)
     {
+        
         Tuple tuple = getNextTerrain(rows[i - 1].type, index);
-        index = tuple.index;
-        Rectangle curr_position = (Rectangle){
-            position.x,
-            tuple.height * i,
-            position.width,
-            position.height};
+        index=tuple.index;
+        curr_position.y+=tuple.height;        
         initRow(&rows[i], tuple.type, tuple.index, curr_position);
     }
 }
@@ -216,41 +214,20 @@ Tuple getNextDirtTerrain(int index)
     Tuple tuple;
     tuple.index = index;
     tuple.type = DIRT;
-    if (index <= 5)
-    {
-        tuple.index += 8;
-    }
-    else
-    {
-        if (index == 6)
-        {
-            tuple.index = 7;
-        }
-        else
-        {
-            if (index == 7)
-            {
-                tuple.index = 15;
-            }
-            else
-            {
-                if (index >= 8 && index <= 14)
-                {
-                    tuple.index++;
-                }
-                else
-                {
-                    int prob = GetRandomValue(0, 1);
-                    if (prob)
-                    {
-                        tuple.type = WATER;
-                        tuple.index = 0;
-                    }
-                    else
-                    {
-                        tuple.type = ROAD;
-                        tuple.index = 0;
-                    }
+   
+    if(index==15){
+        tuple.index=10;
+    }else{
+        if(index>=7 && index <14){
+            tuple.index++;
+        }else{
+            if(index==14){
+                int nextind = GetRandomValue(0,6);
+                tuple.index=nextind;
+            }else{
+                if(index<6){
+                    tuple.type=WATER;
+                    tuple.index=1;
                 }
             }
         }
@@ -302,6 +279,7 @@ Tuple getNextRoadTerrain(int index)
     Tuple tuple;
     tuple.index = index;
     tuple.type = ROAD;
+    tuple.height = DEFAULT_ROW;
     if (index == 0)
     {
         tuple.index = 1;
@@ -310,57 +288,21 @@ Tuple getNextRoadTerrain(int index)
     {
         if (index < 5)
         {
-            int prob = GetRandomValue(1, 10);
-            if (prob < 7)
-            {
-                tuple.index++;
-            }
-            else
-            {
-                if (prob < 8)
-                {
-                    tuple.type = GRASS;
-                    tuple.index = GetRandomValue(0, 6);
-                }
-                else
-                {
-                    if (prob < 9)
-                    {
-                        tuple.type = RAIL;
-                        tuple.index = 3;
-                    }
-                    else
-                    {
-                        tuple.type = PAVEMENT;
-                        tuple.index = 0;
-                    }
-                }
-            }
-        }
-        else
-        {
-            int prob2 = GetRandomValue(1, 10);
-            if (prob2 < 6)
-            {
-                tuple.type = GRASS;
-                tuple.index = GetRandomValue(0, 6);
-            }
-            else
-            {
-                if (prob2 < 9)
-                {
-                    tuple.type = RAIL;
-                    tuple.index = 0;
-                }
-                else
-                {
-                    tuple.type = PAVEMENT;
-                    tuple.index = 0;
-                }
+           tuple.index++;
+        }else{
+            int prob = GetRandomValue(0,1);
+            if(prob){
+                tuple.index=3;
+                tuple.type=RAIL;
+                tuple.height=20;
+            }else{
+                tuple.index=15;
+                tuple.type=DIRT;
+                tuple.height=20;
             }
         }
     }
-    tuple.height = DEFAULT_ROW;
+    
     return tuple;
 }
 
@@ -369,17 +311,22 @@ Tuple getNextWaterTerrain(int index)
     Tuple tuple;
     tuple.index = index;
     tuple.type = WATER;
-    int prob = GetRandomValue(0, 1);
-    if (index == 7 || (index >= 1 && prob))
-    {
-        tuple.type = DIRT;
-        tuple.index = GetRandomValue(4, 6);
-    }
-    else
-    {
-        tuple.index++;
-    }
     tuple.height = DEFAULT_ROW;
+    if(index<7){
+        tuple.index++;
+    }else{
+        int prob = GetRandomValue(0,1);
+        if(prob){
+            tuple.type=GRASS;
+            tuple.index=15;
+            tuple.height=20;
+        }else{
+            tuple.type=DIRT;
+            tuple.index=15;
+            tuple.height=20;
+        }
+    }
+    
     return tuple;
 }
 
