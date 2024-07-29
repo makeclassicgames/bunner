@@ -22,6 +22,8 @@ Tuple getNextRoadTerrain(int index);
 Tuple getNextRailTerrain(int index);
 Tuple getNextPavementTerrain(int index);
 
+void drawRow(Row*);
+
 void initRows(Row *rows, int n)
 {
     // First Row Grass 0
@@ -339,7 +341,11 @@ void deInitRow(Row *row)
 {
     UnloadTexture(row->texture);
 }
-
+void drawRows(Row* rows,int n){
+    for(int i=0;i<n;i++){
+        drawRow(&rows[i]);
+    }
+}
 void drawRow(Row *row)
 {
     DrawTexture(row->texture, row->position.x, row->position.y, WHITE);

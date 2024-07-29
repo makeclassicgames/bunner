@@ -44,7 +44,7 @@ void init(int screenWidth, int screenHeight){
      
      initRows(Game.rows,MAX_TERRAINS);
      initPlayer(&Game.player,(Vector2){screenWidth/2,0},3);
-       
+     Game.status=GAME;  
 
 
 }
@@ -55,24 +55,41 @@ void checkInputs(void)
 }
 
 void update(void){
-
+    switch (Game.status)
+    {
+    case MENU:
+    case GAME:
     updatePlayer(&Game.player);
+    break;
+    case GAME_OVER:
+    
+    default:
+        break;
+    }
+    
 }
 
 void draw(void){
  //init drawing mode
-        BeginDrawing();
-   
-       
-       BeginMode2D(Game.player.camera);
-            //Clear Background
-            ClearBackground(RAYWHITE);
-            for(int i=0;i<MAX_TERRAINS;i++){
-                drawRow(&Game.rows[i]);
-            }
-
+       BeginDrawing();
+       ClearBackground(RAYWHITE);
+       switch (Game.status)
+       {
+       case MENU:
+        
+        drawRows(Game.rows,MAX_TERRAINS);
+        break;
+        case GAME:
+        BeginMode2D(Game.player.camera);
+            drawRows(Game.rows,MAX_TERRAINS);
             drawPlayer(&Game.player);
         EndMode2D();
+        break;
+        case GAME_OVER:
+        break;
+       default:
+        break;
+       }
         //Finish Drawing Mode
         EndDrawing();
 }

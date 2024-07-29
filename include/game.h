@@ -6,7 +6,7 @@
 #include "player.h"
 #include "terrain.h"
 
-#define MAX_TERRAINS 100
+#define MAX_TERRAINS 200
 
 typedef enum state{
     MENU,

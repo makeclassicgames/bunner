@@ -59,11 +59,13 @@ typedef struct{
 }Log;
 
 
-//TODO: Create Update/Draw Functions for each TerrainType
+
 
 void initRows(Row* rows, int n);
 
-void drawRow(Row* row);
+void updateRows(Row* row,int n);
+
+void drawRows(Row* row,int n);
 
 void deInitRow(Row* row);
 
