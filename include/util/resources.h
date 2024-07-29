@@ -24,8 +24,8 @@
 
 //Player
 #define PLAYER_JUMP_TYPE 1
-
-#define PLAYER_SPLAT_TYPE 2
+#define PLAYER_SIT_TYPE 2
+#define PLAYER_SPLAT_TYPE 3
 
 
 void initTextures(void);

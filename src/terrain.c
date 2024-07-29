@@ -45,21 +45,26 @@ void initRow(Row *output, TerrainType type, int index, Rectangle position)
     switch (type)
     {
     case ROAD:
-        return initRoadRow(output, index, position);
+        initRoadRow(output, index, position);
+        break;
     case GRASS:
-        return initGrassRow(output, index, position);
+        initGrassRow(output, index, position);
+        break;
     case RAIL:
-        return initRail(output, index, position);
+        initRail(output, index, position);
+        break;
     case DIRT:
-        return initDirt(output, index, position);
+        initDirt(output, index, position);
+        break;
     case WATER:
-        return initWater(output, index, position);
+        initWater(output, index, position);
+        break;
     case PAVEMENT:
-        return initPavement(output, index, position);
+        initPavement(output, index, position);
+        break;
     default:
         break;
     }
-    return 0;
 }
 
 void initRoadRow(Row *output, int index, Rectangle position)

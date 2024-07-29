@@ -26,4 +26,8 @@ void initGame(void);
 
 void updateGame(void);
 void drawGame(void);
+
+//Input functions
+
+void checkInputs(void);
 #endif

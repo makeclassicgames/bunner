@@ -64,12 +64,15 @@ void initTextures(void){
 
     //player
     //junp
-    for(int i=0;i<3;i++){
+    for(int i=0;i<4;i++){
         sprintf(path,SPRITE_PLAYER_FORMAT,"jump",i);
         spriteTextures[PLAYER_JUMP_TYPE][i]=LoadTexture(path);
     }
     //sit
-
+    for(int i=0;i<4;i++){
+        sprintf(path,SPRITE_PLAYER_FORMAT,"sit",i);
+        spriteTextures[PLAYER_SIT_TYPE][i]=LoadTexture(path);
+    }
     //splat
 
     //splash
