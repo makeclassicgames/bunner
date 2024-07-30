@@ -55,5 +55,8 @@ void generateRoadEntities(Entity* output, int entity_size,Vector2 position,int i
 void generateTrainEntities(Entity* output, int entity_size,Vector2 position,int index,TerrainType type);
 void generateLogEntities(Entity* output, int entity_size,Vector2 position,int index,TerrainType type);
 
+//Update Entities
+
+//CheckCollisionsEntities
 
 #endif
