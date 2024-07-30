@@ -3,8 +3,9 @@
 
 #include <raylib.h>
 
-#include "player.h"
 #include "terrain.h"
+#include "player.h"
+
 
 #define MAX_TERRAINS 200
 

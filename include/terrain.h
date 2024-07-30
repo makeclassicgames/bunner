@@ -17,46 +17,26 @@ typedef enum terrain_type{
     PAVEMENT
 }TerrainType;
 
-typedef enum car_direction{
-    CAR_LEFT=0,
-    CAR_RIGHT
-}CarDirection;
+typedef enum entity_direction{
+    ENTITY_LEFT=0,
+    ENTITY_RIGHT
+}EntityDirection;
 
-typedef enum train_direction{
-    TRAIN_LEFT=0,
-    TRAIN_RIGHT
-}TrainDirection;
-
-typedef enum log_direction{
-    LOG_RIGHT=0,
-    LOG_LEFT
-}LogDirection;
+typedef struct {
+    Texture2D texture;
+    Vector2 position;
+    EntityDirection direction;
+}Entity;
 
 typedef struct{
     TerrainType type;
     int index;
     Rectangle position;
     Texture2D texture;
-    void* terrainData;
+    Entity* entities;
+    int entity_size;
 }Row;
 
-typedef struct{
-    Texture2D* texture;
-    CarDirection direction;
-    Rectangle position;
-}Car;
-
-typedef struct{
-    Texture2D* texture;
-    TrainDirection direction;
-    Rectangle position;
-}Train;
-
-typedef struct{
-    Texture2D* texture;
-    Rectangle position;
-    LogDirection direction;
-}Log;
 
 
 
@@ -69,7 +49,11 @@ void drawRows(Row* row,int n);
 
 void deInitRow(Row* row);
 
-//GetNextTerrain
+//Generate Entities
+
+void generateRoadEntities(Entity* output, int entity_size,Vector2 position,int index,TerrainType type);
+void generateTrainEntities(Entity* output, int entity_size,Vector2 position,int index,TerrainType type);
+void generateLogEntities(Entity* output, int entity_size,Vector2 position,int index,TerrainType type);
 
 
 #endif

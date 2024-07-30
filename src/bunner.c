@@ -1,7 +1,8 @@
 //Include Lib
 #include <raylib.h>
-#include "util/resources.h"
 #include "game.h"
+#include "util/resources.h"
+
 
 void init(int, int);
 void checkInputs(void);

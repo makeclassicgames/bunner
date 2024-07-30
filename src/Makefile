@@ -400,9 +400,10 @@ endif
 # Define source code object files required
 #------------------------------------------------------------------------------------------------
 PROJECT_SOURCE_FILES ?= \
+   terrain.c \
+   entities.c \
    bunner.c \
    resources.c \
-   terrain.c \
    player.c \
 
 # Define all object files from source files

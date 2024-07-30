@@ -7,7 +7,7 @@
 #define GFX_TYPES 6
 #define MAX_TEXTURES 16
 
-#define SPRITE_TYPES 6
+#define SPRITE_TYPES 7
 #define MAX_SPRITE_TEXTURES 20
 
 #define GRASS_TYPE 0
@@ -21,11 +21,14 @@
 
 //Cars
 #define CARS_TYPE 0
+#define TRAIN_TYPE 1
+#define LOG_TYPE 2
 
 //Player
-#define PLAYER_JUMP_TYPE 1
-#define PLAYER_SIT_TYPE 2
-#define PLAYER_SPLAT_TYPE 3
+#define PLAYER_JUMP_TYPE 3
+#define PLAYER_SIT_TYPE 4
+#define PLAYER_SPLAT_TYPE 5
+#define PLAYER_DROWING_TYPE 6
 
 
 void initTextures(void);

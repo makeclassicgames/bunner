@@ -61,7 +61,23 @@ void initTextures(void){
             count++;
         }
     }
+    //train
+    count =0;
+    for(int i=0;i<3;i++){
+        for(int j=0;j<2;j++){
+            sprintf(path,SPRITE_RESOURCE_FORMAT,"train","train",i,j);
+            spriteTextures[TRAIN_TYPE][count]=LoadTexture(path);
+            count++;
+        }
+    }
 
+    //Logs
+    count=0;
+    for(int i=0;i<2;i++){
+         sprintf(path,SPRITE_RESOURCE_FORMAT,"log","log",0,i);
+            spriteTextures[LOG_TYPE][count]=LoadTexture(path);
+            count++;
+    }
     //player
     //junp
     for(int i=0;i<4;i++){
