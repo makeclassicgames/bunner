@@ -132,6 +132,9 @@ Input checkPlayerInput(void)
             }
         }
     }
+
+    if(IsKeyPressed(KEY_ENTER))
+        return INTRO;
     return input;
 }
 

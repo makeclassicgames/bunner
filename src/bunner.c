@@ -45,7 +45,7 @@ void init(int screenWidth, int screenHeight){
      
      initRows(Game.rows,MAX_TERRAINS);
      initPlayer(&Game.player,(Vector2){screenWidth/2,0},3);
-     Game.status=GAME;  
+     Game.status=MENU;  
 
 
 }
@@ -59,11 +59,17 @@ void update(void){
     switch (Game.status)
     {
     case MENU:
+        if(Game.player.playerInput==INTRO){
+            Game.status=GAME;
+        }
     case GAME:
     updatePlayer(&Game.player);
+    updateRows(Game.rows,MAX_TERRAINS);
     break;
     case GAME_OVER:
-    
+        if(Game.player.playerInput==INTRO){
+            Game.status=MENU;
+        }
     default:
         break;
     }
@@ -79,6 +85,8 @@ void draw(void){
        case MENU:
         
         drawRows(Game.rows,MAX_TERRAINS);
+        DrawTexture(getGfxTexture(TITLE_TYPE,0),-8,0,WHITE);
+        DrawText("Press Enter to Continue...",100,600,20,WHITE);
         break;
         case GAME:
         BeginMode2D(Game.player.camera);
@@ -87,6 +95,8 @@ void draw(void){
         EndMode2D();
         break;
         case GAME_OVER:
+        DrawTexture(getGfxTexture(TITLE_TYPE,1),-8,0,WHITE);
+        DrawText("Press Enter to Continue...",100,600,20,WHITE);
         break;
        default:
         break;

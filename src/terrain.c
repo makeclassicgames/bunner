@@ -4,8 +4,6 @@
 #include "util/resources.h"
 #include "util/tuple.h"
 
-
-
 #define DEFAULT_ROW 40
 
 void initRow(Row *output, TerrainType type, int index, Rectangle position);
@@ -16,8 +14,6 @@ void initDirt(Row *output, int index, Rectangle position);
 void initWater(Row *output, int index, Rectangle position);
 void initPavement(Row *output, int index, Rectangle position);
 
-
-
 Tuple getNextTerrain(TerrainType type, int index);
 
 Tuple getNextGrassTerrain(int index);
@@ -26,6 +22,8 @@ Tuple getNextWaterTerrain(int index);
 Tuple getNextRoadTerrain(int index);
 Tuple getNextRailTerrain(int index);
 Tuple getNextPavementTerrain(int index);
+
+void updateRow(Row *row);
 
 void drawRow(Row *);
 
@@ -83,11 +81,10 @@ void initRoadRow(Row *output, int index, Rectangle position)
     output->texture = text;
     output->type = ROAD;
     output->entity_size = 0;
-    Entity* entities = (Entity*)malloc(3*sizeof(Entity));
-    generateRoadEntities(entities,3,(Vector2){output->position.x,output->position.y},output->index,output->type);
-    output->entities=entities;
-    output->entity_size=3;
-
+    Entity *entities = (Entity *)malloc(3 * sizeof(Entity));
+    generateRoadEntities(entities, 3, (Vector2){output->position.x, output->position.y}, output->index, output->type);
+    output->entities = entities;
+    output->entity_size = 3;
 }
 
 void initGrassRow(Row *output, int index, Rectangle position)
@@ -111,11 +108,10 @@ void initRail(Row *output, int index, Rectangle position)
     output->texture = text;
     output->type = RAIL;
     output->entity_size = 0;
-    Entity* entity = (Entity*)malloc(sizeof(Entity));
-    generateTrainEntities(entity,1,(Vector2){output->position.x,output->position.y},output->index,output->type);
-    output->entities=entity;
-    output->entity_size=1;
-
+    Entity *entity = (Entity *)malloc(sizeof(Entity));
+    generateTrainEntities(entity, 1, (Vector2){output->position.x, output->position.y}, output->index, output->type);
+    output->entities = entity;
+    output->entity_size = 1;
 }
 
 void initDirt(Row *output, int index, Rectangle position)
@@ -138,11 +134,11 @@ void initWater(Row *output, int index, Rectangle position)
     output->position = position;
     output->texture = text;
     output->type = WATER;
-    output->entity_size=0;
-    Entity* entities = (Entity*)malloc(3*sizeof(Entity));
-    generateLogEntities(entities,3,(Vector2){output->position.x,output->position.y},output->index,output->type);
-    output->entities=entities;
-    output->entity_size=3;
+    output->entity_size = 0;
+    Entity *entities = (Entity *)malloc(3 * sizeof(Entity));
+    generateLogEntities(entities, 3, (Vector2){output->position.x, output->position.y}, output->index, output->type);
+    output->entities = entities;
+    output->entity_size = 3;
 }
 
 void initPavement(Row *output, int index, Rectangle position)
@@ -155,8 +151,6 @@ void initPavement(Row *output, int index, Rectangle position)
     output->texture = text;
     output->type = PAVEMENT;
 }
-
-
 
 Tuple getNextTerrain(TerrainType type, int index)
 {
@@ -262,7 +256,7 @@ Tuple getNextDirtTerrain(int index)
             {
                 int nextind = GetRandomValue(0, 6);
                 tuple.index = nextind;
-                tuple.type=DIRT;
+                tuple.type = DIRT;
             }
             else
             {
@@ -391,12 +385,28 @@ Tuple getNextWaterTerrain(int index)
 
 void deInitRow(Row *row)
 {
-    for(int i=0;i<row->entity_size;i++){
+    for (int i = 0; i < row->entity_size; i++)
+    {
         UnloadTexture(row->entities[i].texture);
     }
     free(row->entities);
     UnloadTexture(row->texture);
 }
+
+// Update
+void updateRows(Row *rows, int n)
+{
+
+    for (int i = 0; i < n; i++)
+    {
+        updateRow(&rows[i]);
+    }
+}
+
+void updateRow(Row* row){
+    updateEntities(row->entities,row->entity_size,row->type);
+}
+
 void drawRows(Row *rows, int n)
 {
     for (int i = 0; i < n; i++)
@@ -411,7 +421,6 @@ void drawRows(Row *rows, int n)
             DrawTexture(rows[i].entities[j].texture, rows[i].entities[j].position.x, rows[i].entities[j].position.y, WHITE);
         }
     }
-
 }
 
 void drawRow(Row *row)

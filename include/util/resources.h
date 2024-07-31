@@ -4,7 +4,7 @@
 #include<raylib.h>
 #include "terrain.h"
 
-#define GFX_TYPES 6
+#define GFX_TYPES 7
 #define MAX_TEXTURES 16
 
 #define SPRITE_TYPES 7
@@ -16,6 +16,7 @@
 #define RAIL_TYPE 3
 #define WATER_TYPE 4
 #define PAVEMENT_TYPE 5
+#define TITLE_TYPE 6
 
 //Sprites Textures
 

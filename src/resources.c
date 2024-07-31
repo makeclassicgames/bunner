@@ -50,6 +50,8 @@ void initTextures(void){
           sprintf(path,RESOURCE_FORMAT,"pavement",SLIDE_STR,i);
         gfxTextures[PAVEMENT_TYPE][i]=LoadTexture(path);
     }
+    gfxTextures[TITLE_TYPE][0]=LoadTexture("../resources/gfx/title.png");
+    gfxTextures[TITLE_TYPE][1]=LoadTexture("../resources/gfx/gameover.png");
     //SPrite Textures
     
     //Car
@@ -90,7 +92,7 @@ void initTextures(void){
         spriteTextures[PLAYER_SIT_TYPE][i]=LoadTexture(path);
     }
     //splat
-
+    
     //splash
 
 }

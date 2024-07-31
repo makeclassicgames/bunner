@@ -1,6 +1,15 @@
 #include "terrain.h"
 #include "util/resources.h"
 
+#define CAR_SPEED 4
+#define TRAIN_SPEED 7
+#define LOG_1_SPEED 1
+#define LOG_2_SPEED 2
+
+void updateRoadEntities(Entity *entities, int n);
+void updateRailEntities(Entity *entities, int n);
+void updateLogEntities(Entity *entities, int n);
+
 void generateRoadEntities(Entity *output, int entity_size, Vector2 position, int index, TerrainType type)
 {
     if (index > 1 && index < 5 && type == ROAD)
@@ -52,4 +61,96 @@ void generateLogEntities(Entity *output, int entity_size, Vector2 position, int 
             output[i].texture = *getSpriteTexture(LOG_TYPE, output[i].direction);
         }
     }
+}
+
+// Update
+
+void updateEntities(Entity *entities, int entity_size, TerrainType type)
+{
+    switch (type)
+    {
+    case ROAD:
+        updateRoadEntities(entities,entity_size);
+        break;
+    case RAIL:
+        updateRailEntities(entities,entity_size);
+        break;
+    case WATER:
+        updateLogEntities(entities,entity_size);
+        break;
+    default:
+        break;
+    }
+}
+
+void updateRoadEntities(Entity *entities, int n)
+{
+    for(int i=0;i<n;i++){
+        switch (entities[i].direction)
+        {
+        case ENTITY_LEFT:
+            entities[i].position.x-=CAR_SPEED;
+            if(entities[i].position.x<-60)
+            entities[i].position.x=511;
+            break;
+        case ENTITY_RIGHT:
+            entities[i].position.x+=CAR_SPEED;
+            if(entities[i].position.x>511){
+                entities[i].position.x=-60;
+            }
+            break;
+        default:
+            break;
+        }
+
+       
+    }
+}
+void updateRailEntities(Entity *entities, int n)
+{
+     for(int i=0;i<n;i++){
+        switch (entities[i].direction)
+        {
+        case ENTITY_LEFT:
+            entities[i].position.x-=TRAIN_SPEED;
+            if(entities[i].position.x<-1000){
+                entities[i].position.x=511;
+            }
+            
+            break;
+        case ENTITY_RIGHT:
+            entities[i].position.x+=TRAIN_SPEED;
+            if(entities[i].position.x>1310){
+                entities[i].position.x=-880;
+            }
+            break;
+        default:
+            break;
+        }
+
+       
+    }
+}
+void updateLogEntities(Entity *entities, int n)
+{
+    for(int i=0;i<n;i++){
+        switch (entities[i].direction)
+        {
+        case ENTITY_LEFT:
+         entities[i].position.x-=LOG_2_SPEED;
+            if(entities[i].position.x<-90){
+                entities[i].position.x=534;
+            }
+        break;
+        case ENTITY_RIGHT:
+            entities[i].position.x+=LOG_1_SPEED;
+            if(entities[i].position.x>534){
+                entities[i].position.x=-84;
+            }   
+        break;
+        default:
+        break;
+        }
+    }
+
 }
