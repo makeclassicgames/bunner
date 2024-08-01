@@ -252,7 +252,7 @@ endif
 # Define include paths for required headers: INCLUDE_PATHS
 # NOTE: Some external/extras libraries could be required (stb, physac, easings...)
 #------------------------------------------------------------------------------------------------
-INCLUDE_PATHS = -I. -I$(RAYLIB_PATH)/src -I$(RAYLIB_PATH)/src/external -I$(RAYLIB_PATH)/src/extras
+INCLUDE_PATHS = -I. -I$(RAYLIB_PATH)/src -I../include -I$(RAYLIB_PATH)/src/external -I$(RAYLIB_PATH)/src/extras
 
 # Define additional directories containing required header files
 ifeq ($(PLATFORM),PLATFORM_DESKTOP)
@@ -400,6 +400,9 @@ endif
 # Define source code object files required
 #------------------------------------------------------------------------------------------------
 PROJECT_SOURCE_FILES ?= \
+   terrain.c \
+   resources.c \
+   player.c \
    bunner.c \
 
 # Define all object files from source files
