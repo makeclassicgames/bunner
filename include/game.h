@@ -18,7 +18,7 @@ typedef enum state{
 struct{
     Player player;
     Status status;
-    int currentScroll;
+    int activeRow;
     //TODO: Terrain Info
     Row rows[MAX_TERRAINS];
 }Game;
@@ -31,4 +31,6 @@ void drawGame(void);
 //Input functions
 
 void checkInputs(void);
+
+
 #endif

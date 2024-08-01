@@ -1,4 +1,5 @@
 //Include Lib
+#include <stdio.h>
 #include <raylib.h>
 #include "game.h"
 #include "util/resources.h"
@@ -8,6 +9,9 @@ void init(int, int);
 void checkInputs(void);
 void update(void);
 void draw(void);
+
+void checkCollisions(void);
+
 
 //Main Function
 int main(){
@@ -62,14 +66,37 @@ void update(void){
         if(Game.player.playerInput==INTRO){
             Game.status=GAME;
         }
+        break;
     case GAME:
     updatePlayer(&Game.player);
     updateRows(Game.rows,MAX_TERRAINS);
+    Game.activeRow=Game.player.position.y/40;
+    checkCollisions();
     break;
     case GAME_OVER:
         if(Game.player.playerInput==INTRO){
             Game.status=MENU;
         }
+        break;
+    default:
+        break;
+    }
+    
+}
+
+void checkCollisions(void){
+    Row activeRow= Game.rows[Game.activeRow];
+    switch (activeRow.type)
+    {
+    case ROAD:
+    
+        for(int i=0;i<activeRow.entity_size;i++){
+            if(checkCarEntitiesCollision(activeRow.entities[i],Game.player.position)){
+                
+            }
+        }
+        break;
+    
     default:
         break;
     }

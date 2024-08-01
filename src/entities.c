@@ -154,3 +154,4 @@ void updateLogEntities(Entity *entities, int n)
     }
 
 }
+

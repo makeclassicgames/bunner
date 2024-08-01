@@ -17,6 +17,7 @@ void initPlayer(Player *player, Vector2 position, short lives)
     player->lives = lives;
     player->position = position;
     player->offset=0;
+    player->texture = GetCurrentPlayerTexture(player);
     initCamera(player);
 }
 

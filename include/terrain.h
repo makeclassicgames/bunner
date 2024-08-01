@@ -59,6 +59,5 @@ void generateLogEntities(Entity* output, int entity_size,Vector2 position,int in
 
 void updateEntities(Entity* entities, int entity_size,TerrainType type);
 
-//CheckCollisionsEntities
-
+bool checkCarEntitiesCollision(Entity Entity, Vector2 playerPosition);
 #endif
