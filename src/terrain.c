@@ -407,6 +407,15 @@ void updateRow(Row* row){
     updateEntities(row->entities,row->entity_size,row->type);
 }
 
+int getCurrentActiveRow(Row* rows, int n, Rectangle playerRect){
+    for(int i=0;i<n;i++){
+        if(CheckCollisionRecs(rows[i].position,playerRect)){
+            return i;
+        }
+    }
+    return -1;
+}
+
 void drawRows(Row *rows, int n)
 {
     for (int i = 0; i < n; i++)

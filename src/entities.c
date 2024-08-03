@@ -155,3 +155,34 @@ void updateLogEntities(Entity *entities, int n)
 
 }
 
+bool checkCarEntitiesCollision(Entity entity, Rectangle playerPosition){
+    Rectangle rectCar = (Rectangle){entity.position.x+11,entity.position.y+11,70.29};
+    return CheckCollisionRecs(rectCar,playerPosition);
+}
+
+bool checkTrainEntityCollision(Entity entity,Rectangle playerPosition){
+    Rectangle rectCar = (Rectangle){entity.position.x+7,entity.position.y+11,827,34};
+    return CheckCollisionRecs(rectCar,playerPosition);
+}
+
+bool checkLogEntityCollision(Entity entity, Rectangle playerRect){
+    Rectangle logRect;
+    switch (entity.direction)
+    {
+    case ENTITY_LEFT:
+        logRect.x=entity.position.x+14;
+        logRect.y=entity.position.y+14;
+        logRect.width=57;
+        logRect.height=31;
+        break;
+    case ENTITY_RIGHT:
+        logRect.x=entity.position.x+14;
+        logRect.y=entity.position.y+12;
+        logRect.width=109;
+        logRect.height=31;
+        break;
+    default:
+        break;
+    }
+    return CheckCollisionRecs(logRect,playerRect);
+}

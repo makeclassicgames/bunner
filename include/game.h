@@ -28,6 +28,8 @@ void initGame(void);
 void updateGame(void);
 void drawGame(void);
 
+void restartGame(void);
+
 //Input functions
 
 void checkInputs(void);

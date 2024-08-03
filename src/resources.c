@@ -92,9 +92,15 @@ void initTextures(void){
         spriteTextures[PLAYER_SIT_TYPE][i]=LoadTexture(path);
     }
     //splat
-    
-    //splash
-
+    for(int i=0;i<4;i++){
+        sprintf(path,SPRITE_PLAYER_FORMAT,"splat",i);
+        spriteTextures[PLAYER_SPLAT_TYPE][i]=LoadTexture(path);
+    }
+    //Drowing
+    for(int i=0;i<8;i++){
+        sprintf(path,SPRITE_PLAYER_FORMAT,"splash",i);
+        spriteTextures[PLAYER_DROWING_TYPE][i]=LoadTexture(path);
+    }
 }
 
 Texture getGfxTexture(int typeIndex, int index){

@@ -35,6 +35,7 @@ typedef struct{
     Vector2 position;
     int offset;
     short currentFrame;
+    int Frame;
     Camera2D camera;
 }Player;
 
@@ -42,8 +43,11 @@ void initPlayer(Player* ,Vector2 ,short);
 void updatePlayer(Player* player);
 void drawPlayer(Player*);
 
+void drawLives(Player*);
+
 //Input
 
 Input checkPlayerInput(void);
 
+Rectangle getCurrentHitBox(Player *player);
 #endif

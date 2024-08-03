@@ -59,5 +59,13 @@ void generateLogEntities(Entity* output, int entity_size,Vector2 position,int in
 
 void updateEntities(Entity* entities, int entity_size,TerrainType type);
 
-bool checkCarEntitiesCollision(Entity Entity, Vector2 playerPosition);
+//GetCurrentActiveRow
+
+int getCurrentActiveRow(Row*, int, Rectangle);
+
+//Collisions
+bool checkCarEntitiesCollision(Entity, Rectangle);
+bool checkLogEntityCollision(Entity, Rectangle);
+
+bool checkTrainEntityCollision(Entity,Rectangle);
 #endif
