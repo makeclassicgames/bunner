@@ -111,7 +111,7 @@ void checkCollisions(void)
         {
             if (checkCarEntitiesCollision(activeRow.entities[i], getCurrentHitBox(&Game.player)))
             {
-                // Game.player.state=SPLASH;
+                Game.player.state=SPLASH;
             }
         }
         break;
@@ -120,7 +120,7 @@ void checkCollisions(void)
         {
             if (checkTrainEntityCollision(activeRow.entities[0], getCurrentHitBox(&Game.player)))
             {
-                //  Game.player.state=SPLASH;
+                Game.player.state=SPLASH;
             }
         }
         break;
