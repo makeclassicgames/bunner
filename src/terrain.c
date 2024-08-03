@@ -114,17 +114,21 @@ Tuple getNextTerrain(TerrainType type, int index)
     case WATER:
         return getNextWaterTerrain(index);
     default:
+        Tuple tuple;
+        tuple.index=-1;
+        tuple.type=-1;
+        tuple.height=0;
+        return tuple;
         break;
     }
 }
 
 Tuple getNextRoadTerrain(int index)
 {
-    Tuple tuple;
+   Tuple tuple;
     tuple.index = index;
     tuple.type = ROAD;
     tuple.height = DEFAULT_ROW;
-
     if (index == 0)
     {
         tuple.index = 1;
@@ -140,27 +144,27 @@ Tuple getNextRoadTerrain(int index)
             int prob = GetRandomValue(0, 1);
             if (prob)
             {
-                tuple.index = 1;
+                tuple.index = 3;
                 tuple.type = RAIL;
                 tuple.height = 20;
             }
             else
             {
                 tuple.index = 15;
-                tuple.index = DIRT;
+                tuple.type = DIRT;
                 tuple.height = 20;
             }
         }
     }
+
     return tuple;
 }
+
 Tuple getNextGrassTerrain(int index)
 {
     Tuple tuple;
     tuple.index = index;
     tuple.type = GRASS;
-    tuple.height = DEFAULT_ROW;
-
     if (index == 0)
     {
         tuple.type = ROAD;
@@ -195,8 +199,8 @@ Tuple getNextGrassTerrain(int index)
                         int prob = GetRandomValue(0, 1);
                         if (prob)
                         {
-                            tuple.index = 0;
                             tuple.type = WATER;
+                            tuple.index = 0;
                         }
                         else
                         {
@@ -208,6 +212,8 @@ Tuple getNextGrassTerrain(int index)
             }
         }
     }
+
+    tuple.height = DEFAULT_ROW;
     return tuple;
 }
 Tuple getNextRailTerrain(int index)
@@ -234,6 +240,7 @@ Tuple getNextRailTerrain(int index)
     tuple.height = DEFAULT_ROW;
     return tuple;
 }
+
 Tuple getNextDirtTerrain(int index)
 {
     Tuple tuple;
@@ -248,25 +255,33 @@ Tuple getNextDirtTerrain(int index)
     {
         if (index >= 7 && index < 14)
         {
-            int nextind = GetRandomValue(0, 6);
-            tuple.index = nextind;
-            tuple.type = DIRT;
+            tuple.index++;
         }
         else
         {
-            if (index < 6)
+            if (index == 14)
             {
-                tuple.type = WATER;
-                tuple.index = 1;
+                int nextind = GetRandomValue(0, 6);
+                tuple.index = nextind;
+                tuple.type = DIRT;
+            }
+            else
+            {
+                if (index < 6)
+                {
+                    tuple.type = WATER;
+                    tuple.index = 1;
+                }
             }
         }
     }
+
     tuple.height = DEFAULT_ROW;
     return tuple;
 }
 Tuple getNextWaterTerrain(int index)
 {
-    Tuple tuple;
+     Tuple tuple;
     tuple.index = index;
     tuple.type = WATER;
     tuple.height = DEFAULT_ROW;
@@ -279,17 +294,18 @@ Tuple getNextWaterTerrain(int index)
         int prob = GetRandomValue(0, 1);
         if (prob)
         {
-            tuple.index = 15;
             tuple.type = GRASS;
+            tuple.index = 15;
             tuple.height = 20;
         }
         else
         {
-            tuple.index = DIRT,
+            tuple.type = DIRT;
             tuple.index = 15;
-            tuple.index = 20;
+            tuple.height = 20;
         }
     }
+
     return tuple;
 }
 
