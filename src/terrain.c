@@ -69,7 +69,7 @@ void initGrassRow(Row *output, int index, Rectangle position)
     output->index = index;
     output->position = position;
     output->type = GRASS;
-    output->entity_size=0;
+    output->entity_size = 0;
     output->texture = getGfxTexture(GRASS_TYPE, index);
 }
 void initRoadRow(Row *output, int index, Rectangle position)
@@ -77,23 +77,23 @@ void initRoadRow(Row *output, int index, Rectangle position)
     output->index = index;
     output->position = position;
     output->type = ROAD;
-    output->entity_size=0;
+    output->entity_size = 0;
     output->texture = getGfxTexture(ROAD_TYPE, index);
-    Entity* entities = (Entity*)malloc(3*sizeof(Entity));
-    generateRoadEntities(entities,3,(Vector2){output->position.x,output->position.y},output->index,ROAD);
-    output->entity=entities;
-    output->entity_size=3;
+    Entity *entities = (Entity *)malloc(3 * sizeof(Entity));
+    generateRoadEntities(entities, 3, (Vector2){output->position.x, output->position.y}, output->index, ROAD);
+    output->entity = entities;
+    output->entity_size = 3;
 }
 void initRailRow(Row *output, int index, Rectangle position)
 {
     output->index = index;
     output->position = position;
     output->type = RAIL;
-    output->entity_size=0;
-    Entity* entity = (Entity*)malloc(sizeof(Entity));
-    generateRailEntities(entity,1,(Vector2){output->position.x,output->position.y},output->index,RAIL);
-    output->entity=entity;
-    output->entity_size=1;
+    output->entity_size = 0;
+    Entity *entity = (Entity *)malloc(sizeof(Entity));
+    generateRailEntities(entity, 1, (Vector2){output->position.x, output->position.y}, output->index, RAIL);
+    output->entity = entity;
+    output->entity_size = 1;
     output->texture = getGfxTexture(RAIL_TYPE, index);
 }
 void initDirtRow(Row *output, int index, Rectangle position)
@@ -101,7 +101,7 @@ void initDirtRow(Row *output, int index, Rectangle position)
     output->index = index;
     output->position = position;
     output->type = DIRT;
-    output->entity_size=0;
+    output->entity_size = 0;
     output->texture = getGfxTexture(DIRT_TYPE, index);
 }
 void initWaterRow(Row *output, int index, Rectangle position)
@@ -109,10 +109,12 @@ void initWaterRow(Row *output, int index, Rectangle position)
     output->index = index;
     output->position = position;
     output->type = WATER;
-    output->entity_size=0;
-    Entity* entities = (Entity*)malloc(3*sizeof(Entity));
-    generateLogEntities(entities,3,(Vector2){output->position.x,output->position.y},output->index,WATER);
+    output->entity_size = 0;
     output->texture = getGfxTexture(WATER_TYPE, index);
+    Entity *entities = (Entity *)malloc(3 * sizeof(Entity));
+    generateLogEntities(entities, 3, (Vector2){output->position.x, output->position.y}, output->index, output->type);
+    output->entity = entities;
+    output->entity_size = 3;
 }
 
 Tuple getNextTerrain(TerrainType type, int index)
@@ -132,9 +134,9 @@ Tuple getNextTerrain(TerrainType type, int index)
         return getNextWaterTerrain(index);
     default:
         Tuple tuple;
-        tuple.index=-1;
-        tuple.type=-1;
-        tuple.height=0;
+        tuple.index = -1;
+        tuple.type = -1;
+        tuple.height = 0;
         return tuple;
         break;
     }
@@ -142,7 +144,7 @@ Tuple getNextTerrain(TerrainType type, int index)
 
 Tuple getNextRoadTerrain(int index)
 {
-   Tuple tuple;
+    Tuple tuple;
     tuple.index = index;
     tuple.type = ROAD;
     tuple.height = DEFAULT_ROW;
@@ -298,7 +300,7 @@ Tuple getNextDirtTerrain(int index)
 }
 Tuple getNextWaterTerrain(int index)
 {
-     Tuple tuple;
+    Tuple tuple;
     tuple.index = index;
     tuple.type = WATER;
     tuple.height = DEFAULT_ROW;
@@ -339,7 +341,4 @@ void drawRow(Row *row)
 {
 
     DrawTexture(*row->texture, row->position.x, row->position.y, WHITE);
-    for(int i=0;i<row->entity_size;i++){
-        DrawTexture(row->entity[i].texture,row->entity[i].position.x,row->entity[i].position.y,WHITE);
-    }    
 }

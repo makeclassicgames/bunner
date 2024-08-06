@@ -7,7 +7,7 @@
 
 #define GFX_PATH_SRT "../resources/gfx/%s/%s%d.png"
 
-#define SPRITE_FORMAT "../resources/sprites/%s/%s%d%d.png"
+#define SPRITE_RESOURCE_FORMAT "../resources/sprites/%s/%s%d%d.png"
 #define SPRITE_PLAYER_FORMAT "../resources/sprites/player/%s%d.png"
 
 Texture2D gfxTextures[GFX_TYPES][MAX_TEXTURES];
@@ -50,39 +50,32 @@ void initTextures(void)
         sprintf(path, GFX_PATH_SRT, "water", "water", i);
         gfxTextures[WATER_TYPE][i] = LoadTexture(path);
     }
+    char path[60];
+    //Car
+    int count=0;
+    for(int i=0;i<4;i++){
+        for(int j=0;j<2;j++){
+            sprintf(path,SPRITE_RESOURCE_FORMAT,"car","car",i,j);
+            sprtTextures[CAR_TYPE][count]=LoadTexture(path);
+            count++;
+        }
+    }
+    //train
+    count =0;
+    for(int i=0;i<3;i++){
+        for(int j=0;j<2;j++){
+            sprintf(path,SPRITE_RESOURCE_FORMAT,"train","train",i,j);
+            sprtTextures[TRAIN_TYPE][count]=LoadTexture(path);
+            count++;
+        }
+    }
 
-    // CAR
-    int count = 0;
-    for (int i = 0; i < 4; i++)
-    {
-        for (int j = 0; j < 2; j++)
-        {
-            char path[60];
-            sprintf(path, SPRITE_FORMAT, "car", "car", i, j);
-            sprtTextures[CAR_TYPE][count] = LoadTexture(path);
+    //Logs
+    count=0;
+    for(int i=0;i<2;i++){
+         sprintf(path,SPRITE_RESOURCE_FORMAT,"log","log",0,i);
+            sprtTextures[LOG_TYPE][count]=LoadTexture(path);
             count++;
-        }
-    }
-    // TRAIN
-    count = 0;
-    for (int i = 0; i < 3; i++)
-    {
-        for (int j = 0; j < 2; j++)
-        {
-            char path[60];
-            sprintf(path, SPRITE_FORMAT, "train", "train", i, j);
-            sprtTextures[TRAIN_TYPE][count] = LoadTexture(path);
-            count++;
-        }
-    }
-    // Log
-    count = 0;
-    for (int i = 0; i < 2; i++)
-    {
-        char path[60];
-        sprintf(path, SPRITE_FORMAT, "log", "log", 0, i);
-        sprtTextures[LOG_TYPE][count] = LoadTexture(path);
-        count++;
     }
     // Sprites
     // player
