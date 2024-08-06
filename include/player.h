@@ -38,8 +38,15 @@ typedef struct
     PlayerDirection direction;
     Vector2 position;
     int offset;
+    int frame;
     short currentFrame;
     Camera2D camera;
 } Player;
+
+void initPlayer(Player*,Vector2,short);
+void updatePlayer(Player*);
+void drawPlayer(Player*);
+
+Input checkPlayerInput(void);
 
 #endif

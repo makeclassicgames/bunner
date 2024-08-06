@@ -401,7 +401,9 @@ endif
 #------------------------------------------------------------------------------------------------
 PROJECT_SOURCE_FILES ?= \
    terrain.c \
+   entities.c \
    resources.c \
+   input.c \
    player.c \
    bunner.c \
 

@@ -8,6 +8,8 @@ void init(int,int);
 void update(void);
 void draw(void);
 
+void checkInputs(void);
+
 //Main Function
 int main(){
     //Window Dimensions
@@ -18,8 +20,9 @@ int main(){
     //While windows is open
     while(!WindowShouldClose()){
 
+        checkInputs();
         //update()
-
+        update();
         //Draw()
         //init drawing mode
         BeginDrawing();
@@ -40,12 +43,28 @@ void init(int screenWidth,int screenHeight){
 
     initTextures();
     initRows(Game.rows,MAX_ROWS);
+    initPlayer(&Game.player,(Vector2){screenWidth/2,2},2);
     //Set target FPS
     SetTargetFPS(60);
 }
 
-void update(void){
+void checkInputs(void){
+    Game.player.playerInput=checkPlayerInput();
+}
 
+void update(void){
+    switch (Game.status)
+    {
+    case MENU:
+    case GAME:
+    case GAME_OVER:
+
+        updatePlayer(&Game.player);
+        break;
+    
+    default:
+        break;
+    }
 }
 
 void draw(void){
@@ -55,7 +74,10 @@ void draw(void){
     case MENU:
     case GAME:
     case GAME_OVER:
+        BeginMode2D(Game.player.camera);
         drawRows(Game.rows,MAX_ROWS);
+        drawPlayer(&Game.player);
+        EndMode2D();
         break;
     
     default:

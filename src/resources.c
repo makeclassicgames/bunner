@@ -7,40 +7,114 @@
 
 #define GFX_PATH_SRT "../resources/gfx/%s/%s%d.png"
 
+#define SPRITE_FORMAT "../resources/sprites/%s/%s%d%d.png"
+#define SPRITE_PLAYER_FORMAT "../resources/sprites/player/%s%d.png"
+
 Texture2D gfxTextures[GFX_TYPES][MAX_TEXTURES];
 Texture2D sprtTextures[SPRT_TYPES][MAX_TEXTURES];
 
 void initTextures(void)
-{   
-    //Grass
-    for(int i=0;i<16;i++){
+{
+    // Grass
+    for (int i = 0; i < 16; i++)
+    {
         char path[60];
-        sprintf(path,GFX_PATH_SRT,"grass","grass",i);
-        gfxTextures[GRASS_TYPE][i]=LoadTexture(path);
+        sprintf(path, GFX_PATH_SRT, "grass", "grass", i);
+        gfxTextures[GRASS_TYPE][i] = LoadTexture(path);
     }
-    //Road
-    for(int i=0;i<6;i++){
+    // Road
+    for (int i = 0; i < 6; i++)
+    {
         char path[60];
-        sprintf(path,GFX_PATH_SRT,"road","road",i);
-        gfxTextures[ROAD_TYPE][i]=LoadTexture(path);
+        sprintf(path, GFX_PATH_SRT, "road", "road", i);
+        gfxTextures[ROAD_TYPE][i] = LoadTexture(path);
     }
-    //Rail
-    for(int i=0;i<4;i++){
+    // Rail
+    for (int i = 0; i < 4; i++)
+    {
         char path[60];
-        sprintf(path,GFX_PATH_SRT,"rail","rail",i);
-        gfxTextures[RAIL_TYPE][i]=LoadTexture(path);
+        sprintf(path, GFX_PATH_SRT, "rail", "rail", i);
+        gfxTextures[RAIL_TYPE][i] = LoadTexture(path);
     }
-    //Dirt
-    for(int i=0;i<16;i++){
+    // Dirt
+    for (int i = 0; i < 16; i++)
+    {
         char path[60];
-        sprintf(path,GFX_PATH_SRT,"dirt","dirt",i);
-        gfxTextures[DIRT_TYPE][i]=LoadTexture(path);
+        sprintf(path, GFX_PATH_SRT, "dirt", "dirt", i);
+        gfxTextures[DIRT_TYPE][i] = LoadTexture(path);
     }
-    //Water
-    for(int i=0;i<8;i++){
+    // Water
+    for (int i = 0; i < 8; i++)
+    {
         char path[60];
-        sprintf(path,GFX_PATH_SRT,"water","water",i);
-        gfxTextures[WATER_TYPE][i]=LoadTexture(path);
+        sprintf(path, GFX_PATH_SRT, "water", "water", i);
+        gfxTextures[WATER_TYPE][i] = LoadTexture(path);
+    }
+
+    // CAR
+    int count = 0;
+    for (int i = 0; i < 4; i++)
+    {
+        for (int j = 0; j < 2; j++)
+        {
+            char path[60];
+            sprintf(path, SPRITE_FORMAT, "car", "car", i, j);
+            sprtTextures[CAR_TYPE][count] = LoadTexture(path);
+            count++;
+        }
+    }
+    // TRAIN
+    count = 0;
+    for (int i = 0; i < 3; i++)
+    {
+        for (int j = 0; j < 2; j++)
+        {
+            char path[60];
+            sprintf(path, SPRITE_FORMAT, "train", "train", i, j);
+            sprtTextures[TRAIN_TYPE][count] = LoadTexture(path);
+            count++;
+        }
+    }
+    // Log
+    count = 0;
+    for (int i = 0; i < 2; i++)
+    {
+        char path[60];
+        sprintf(path, SPRITE_FORMAT, "log", "log", 0, i);
+        sprtTextures[LOG_TYPE][count] = LoadTexture(path);
+        count++;
+    }
+    // Sprites
+    // player
+    // Jump
+
+    for (int i = 0; i < 4; i++)
+    {
+        char path[60];
+        sprintf(path, SPRITE_PLAYER_FORMAT, "jump", i);
+        sprtTextures[PLAYER_JUMP_TYPE][i] = LoadTexture(path);
+    }
+    // Sit
+    for (int i = 0; i < 4; i++)
+    {
+        char path[60];
+        sprintf(path, SPRITE_PLAYER_FORMAT, "sit", i);
+        sprtTextures[PLAYER_SIT_TYPE][i] = LoadTexture(path);
+    }
+
+    // SPLAT
+    for (int i = 0; i < 4; i++)
+    {
+        char path[60];
+        sprintf(path, SPRITE_PLAYER_FORMAT, "splat", i);
+        sprtTextures[PLAYER_SPLAT_TYPE][i] = LoadTexture(path);
+    }
+    // SPLAT
+    for (int i = 0; i < 8; i++)
+    {
+        char path[60];
+        sprintf(path, SPRITE_PLAYER_FORMAT, "splash", i);
+        sprtTextures[PLAYER_DROWING_TYPE][i] = LoadTexture(path);
     }
 }
 Texture2D *getGfxTexture(int type, int index)
