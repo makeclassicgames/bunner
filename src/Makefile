@@ -404,6 +404,7 @@ PROJECT_SOURCE_FILES ?= \
    entities.c \
    bunner.c \
    resources.c \
+   input.c \
    player.c \
 
 # Define all object files from source files

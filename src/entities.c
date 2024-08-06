@@ -1,7 +1,7 @@
 #include "terrain.h"
 #include "util/resources.h"
 
-#define CAR_SPEED 4
+#define CAR_SPEED 3
 #define TRAIN_SPEED 7
 #define LOG_1_SPEED 1
 #define LOG_2_SPEED 2
