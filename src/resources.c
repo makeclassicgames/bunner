@@ -1,16 +1,23 @@
 #include "util/resource.h"
 #include <stdio.h>
 
+//Current Max GFX_TYPEs
 #define GFX_TYPES 7
+//Current max textures per type
 #define MAX_TEXTURES 16
+//current sprite types
 #define SPRT_TYPES 8
 
+//GFX Path pattern
 #define GFX_PATH_SRT "../resources/gfx/%s/%s%d.png"
 
+//Sprite resource path pattern
 #define SPRITE_RESOURCE_FORMAT "../resources/sprites/%s/%s%d%d.png"
+//Sprite player resource path pattern
 #define SPRITE_PLAYER_FORMAT "../resources/sprites/player/%s%d.png"
-
+//Gfx Textures array
 Texture2D gfxTextures[GFX_TYPES][MAX_TEXTURES];
+//Sprites textures array
 Texture2D sprtTextures[SPRT_TYPES][MAX_TEXTURES];
 
 void initTextures(void)
@@ -50,7 +57,7 @@ void initTextures(void)
         sprintf(path, GFX_PATH_SRT, "water", "water", i);
         gfxTextures[WATER_TYPE][i] = LoadTexture(path);
     }
-
+    //Title and gameover textures
     gfxTextures[TITLE_TYPE][0]=LoadTexture("../resources/gfx/title.png");
     gfxTextures[TITLE_TYPE][1]=LoadTexture("../resources/gfx/gameover.png");
     char path[60];
@@ -113,6 +120,7 @@ void initTextures(void)
         sprtTextures[PLAYER_DROWING_TYPE][i] = LoadTexture(path);
     }
 }
+
 Texture2D *getGfxTexture(int type, int index)
 {
     return &gfxTextures[type][index];
