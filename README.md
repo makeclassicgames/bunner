@@ -4,6 +4,9 @@ This is a Port of _Infinite Bunner_ game from the book _Code the Classics Vol.1_
 
 In this game you have to dodge all the obstacles (cars, trains or rivers) to go to the end of the game.
 
+![imagen](https://github.com/user-attachments/assets/26808fe0-91f1-4dd1-9def-c84e1a5db6f0)
+
+
 ## Controls
 
 Depending on current Game State:
