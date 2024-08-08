@@ -49,4 +49,6 @@ void drawPlayer(Player*);
 
 Input checkPlayerInput(void);
 
+Rectangle getCurrentPlayerHitBox(Player*);
+
 #endif

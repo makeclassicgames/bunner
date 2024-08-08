@@ -8,7 +8,7 @@
 #define RAIL_TYPE 2
 #define DIRT_TYPE 3
 #define WATER_TYPE 4
-
+#define TITLE_TYPE 5
 #define CAR_TYPE 0
 #define TRAIN_TYPE 1
 #define LOG_TYPE 2

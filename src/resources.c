@@ -50,6 +50,9 @@ void initTextures(void)
         sprintf(path, GFX_PATH_SRT, "water", "water", i);
         gfxTextures[WATER_TYPE][i] = LoadTexture(path);
     }
+
+    gfxTextures[TITLE_TYPE][0]=LoadTexture("../resources/gfx/title.png");
+    gfxTextures[TITLE_TYPE][1]=LoadTexture("../resources/gfx/gameover.png");
     char path[60];
     //Car
     int count=0;

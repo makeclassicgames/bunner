@@ -40,6 +40,11 @@
     void generateRoadEntities(Entity* ,int ,Vector2 ,int,TerrainType);
     void generateRailEntities(Entity* ,int ,Vector2 ,int,TerrainType);
     void generateLogEntities(Entity* ,int ,Vector2 ,int,TerrainType);
+    void updateEntities(Entity*,int,TerrainType);
+    int getCurrentActiveRow(Row*,int,Rectangle);
+    void deInitRows(Row*, int);
 
-    void deInitRow(Row* row);
+    bool checkCarEntitiesCollision(Entity , Rectangle);
+    bool checkTrainEntitiesCollision(Entity , Rectangle);
+    bool checkLogEntitiesCollision(Entity , Rectangle);
 #endif

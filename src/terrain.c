@@ -22,6 +22,7 @@ Tuple getNextRailTerrain(int index);
 Tuple getNextDirtTerrain(int index);
 Tuple getNextWaterTerrain(int index);
 
+void deInitRow(Row*);
 void drawRow(Row *);
 
 void initRows(Row *rows, int n)
@@ -117,6 +118,11 @@ void initWaterRow(Row *output, int index, Rectangle position)
     output->entity_size = 3;
 }
 
+void updateRows(Row* rows,int n){
+    for(int i=0;i<n;i++){
+        updateEntities(rows[i].entity,rows[i].entity_size,rows[i].type);
+    }
+}
 Tuple getNextTerrain(TerrainType type, int index)
 {
     switch (type)
@@ -326,6 +332,30 @@ Tuple getNextWaterTerrain(int index)
     }
 
     return tuple;
+}
+int getCurrentActiveRow(Row* rows,int n,Rectangle playerHitBox){
+    for(int i=0;i<n;i++){
+        if(CheckCollisionRecs(rows->position,playerHitBox)){
+            return i;
+        }
+    }
+    return -1;
+}
+
+
+void deInitRows(Row* rows, int n){
+    for(int i=0;i<n;i++){
+        deInitRow(&rows[i]);
+    }
+}
+
+void deInitRow(Row* row){
+
+    for(int i=0;i<row->entity_size;i++){
+        UnloadTexture(row->entity[i].texture);
+    }
+    free(row->entity);
+    UnloadTexture(*row->texture);
 }
 
 // Draw
