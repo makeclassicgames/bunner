@@ -105,7 +105,7 @@ void initTextures(void)
         sprintf(path, SPRITE_PLAYER_FORMAT, "splat", i);
         sprtTextures[PLAYER_SPLAT_TYPE][i] = LoadTexture(path);
     }
-    // SPLAT
+    // DROWING
     for (int i = 0; i < 8; i++)
     {
         char path[60];

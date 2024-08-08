@@ -72,7 +72,7 @@ void update(void)
         }
         break;
     case GAME:
-    updatePlayer(&Game.player);
+        updatePlayer(&Game.player);
         updateRows(Game.rows,MAX_ROWS);
         Game.activeRow=getCurrentActiveRow(Game.rows,MAX_ROWS,getCurrentPlayerHitBox(&Game.player));
         checkCollisions();
@@ -154,7 +154,9 @@ void draw(void)
             }
         }
         drawPlayer(&Game.player);
-
+        if(Game.player.state==SPLAH || Game.player.state==DROWING){
+           DrawText("Press Enter To Continue...",100,600,20,WHITE);
+        }
         EndMode2D();
         break;
     case GAME_OVER:

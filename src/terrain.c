@@ -335,7 +335,7 @@ Tuple getNextWaterTerrain(int index)
 }
 int getCurrentActiveRow(Row* rows,int n,Rectangle playerHitBox){
     for(int i=0;i<n;i++){
-        if(CheckCollisionRecs(rows->position,playerHitBox)){
+        if(CheckCollisionRecs(rows[i].position,playerHitBox)){
             return i;
         }
     }
